@@ -4,9 +4,8 @@ import { Card } from "primereact/card";
 import { InputText } from "primereact/inputtext";
 import { Toast } from "primereact/toast";
 import { type RegisterRequest } from "../../../Contracts/Requests/Auth/RegisterRequest.ts";
-import { useAuth } from "../../../Contexts/AuthContext.tsx";
 import { useNavigate } from "react-router";
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 
 import "./Register.css";
 
@@ -28,7 +27,7 @@ export default function Register() {
         AuthApi
             .register(request!)
             .then(() => {
-                navigate("/");
+                navigate("/entrar");
             })
             .catch(e => {
                 toast.current?.show({ severity: "error", summary: "Falha", detail: e.message });
