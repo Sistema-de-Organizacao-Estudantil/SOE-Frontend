@@ -6,12 +6,19 @@ import { Toast } from "primereact/toast";
 import { AuthApi } from "../../../Api/AuthApi.ts";
 import { type LoginRequest } from "../../../Contracts/Requests/Auth/LoginRequest.ts";
 import { useNavigate } from "react-router";
+import { useAuth } from "../../../Contexts/AuthContext.tsx";
 
 import "./Login.css";
 
 export default function Login() {
-    const [request, setRequest] = useState<LoginRequest>({ email: null, password: null });
     const navigate = useNavigate();
+    const auth = useAuth();
+
+    if (auth.user) {
+        navigate("/");
+    }
+
+    const [request, setRequest] = useState<LoginRequest>({ email: null, password: null });
     const toast = useRef<Toast>(null);
 
     const cardFooter = (

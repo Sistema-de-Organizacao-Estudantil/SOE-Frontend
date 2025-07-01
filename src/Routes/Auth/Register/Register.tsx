@@ -6,12 +6,19 @@ import { Toast } from "primereact/toast";
 import { AuthApi } from "../../../Api/AuthApi";
 import { type RegisterRequest } from "../../../Contracts/Requests/Auth/RegisterRequest.ts";
 import { useNavigate } from "react-router";
+import { useAuth } from "../../../Contexts/AuthContext.tsx";
 
 import "./Register.css";
 
 export default function Register() {
-    const [request, setRequest] = useState<RegisterRequest>({ name: null, email: null, password: null });
     const navigate = useNavigate();
+    const auth = useAuth();
+
+    if (auth.user) {
+        navigate("/");
+    }
+
+    const [request, setRequest] = useState<RegisterRequest>({ name: null, email: null, password: null });
     const toast = useRef<Toast>(null);
 
     const cardFooter = (
