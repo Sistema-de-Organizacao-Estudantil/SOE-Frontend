@@ -6,7 +6,7 @@ import { Toast } from "primereact/toast";
 import { type RegisterRequest } from "../../../Contracts/Requests/Auth/RegisterRequest.ts";
 import { useAuth } from "../../../Contexts/AuthContext.tsx";
 import { useNavigate } from "react-router";
-import { useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import "./Register.css";
 
@@ -14,9 +14,11 @@ export default function Register() {
     const navigate = useNavigate();
     const auth = useAuth();
 
-    if (auth.user) {
-        navigate("/");
-    }
+    useEffect(() => {
+        if (auth.user) {
+            navigate("/");
+        }
+    }, []);
 
     const [request, setRequest] = useState<RegisterRequest>({ name: null, email: null, password: null });
     const toast = useRef<Toast>(null);
