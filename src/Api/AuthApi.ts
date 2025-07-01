@@ -16,10 +16,14 @@ export class AuthApi {
         });
 
         if (response.ok) {
-            AuthApi.setToken(await response.text());
+            localStorage.setItem("token", await response.text());
         } else {
             return Promise.reject(await response.json());
         }
+    }
+
+    static async logout() {
+        localStorage.clear();
     }
 
     static async register(request: RegisterRequest): Promise<void> {
@@ -34,9 +38,5 @@ export class AuthApi {
         if (!response.ok) {
             return Promise.reject(await response.json());
         }
-    }
-
-    private static setToken(token: string) {
-        localStorage.setItem("token", token);
     }
 };
