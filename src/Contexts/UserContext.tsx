@@ -2,13 +2,13 @@ import { type UserResponse as User } from "../Contracts/Responses/UserResponse.t
 import { UserApi } from "../Api/UserApi.ts";
 import { useState, useContext, useEffect, createContext, type ReactNode } from "react";
 
-type AuthContextType = {
+type UserContextType = {
     user: User | null;
 };
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const UserContext = createContext<UserContextType | undefined>(undefined);
 
-export function AuthProvider({ children }: { children: ReactNode }) {
+export function UserProvider({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
@@ -20,14 +20,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }, []);
 
     return (
-        <AuthContext value={{ user }}>
+        <UserContext value={{ user }}>
             {children}
-        </AuthContext>
+        </UserContext>
     );
 }
 
-export function useAuth(): AuthContextType {
-    const context = useContext(AuthContext);
-    if (!context) throw new Error("useAuth must be used within an AuthProvider");
+export function userUser(): UserContextType {
+    const context = useContext(UserContext);
+    if (!context) throw new Error("useUser must be used within an AuthProvider");
     return context;
 }

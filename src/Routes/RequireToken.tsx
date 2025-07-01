@@ -1,7 +1,7 @@
 import { useEffect, type ReactNode } from "react";
 import { useNavigate } from "react-router";
 
-export function RequireAuth({ children }: { children: ReactNode }) {
+export function RequireToken({ children }: { children: ReactNode }) {
     const navigate = useNavigate();
 
     useEffect(() => {
