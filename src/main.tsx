@@ -1,16 +1,27 @@
-import { createRoot } from "react-dom/client"
+import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
 import { AuthProvider } from "./Contexts/AuthContext.tsx";
+import { RequireAuth } from "./Routes/RequireAuth.tsx";
 
 import Home from "./Routes/Home/Home.tsx";
-import Auth from "./Routes/Auth/Auth.tsx";
+import Login from "./Routes/Auth/Login/Login.tsx";
+import Register from "./Routes/Auth/Register/Register.tsx";
+
+import "primereact/resources/themes/lara-light-teal/theme.css";
+
+const protectedRoutes = [
+    { path: "/", element: <Home /> }
+];
 
 createRoot(document.getElementById("root")!).render(
     <BrowserRouter>
         <AuthProvider>
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/auth" element={<Auth />} />
+                {protectedRoutes.map(({ path, element }) =>
+                    <Route path={path} element={<RequireAuth>{element}</RequireAuth>} />
+                )}
+                <Route path="/entrar" element={<Login />} />
+                <Route path="/registrar" element={<Register />} />
             </Routes>
         </AuthProvider>
     </BrowserRouter>,

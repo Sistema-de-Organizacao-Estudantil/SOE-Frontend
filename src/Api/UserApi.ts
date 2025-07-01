@@ -9,7 +9,7 @@ export class UserApi {
         const token = this.getToken();
 
         if (token == null) {
-            return Promise.reject();
+            return null;
         }
 
         const response = await fetch(`${UserApi.endpoint}/me`, {
@@ -22,7 +22,7 @@ export class UserApi {
         if (response.ok) {
             return await response.json();
         } else {
-            return Promise.reject();
+            return null;
         }
     }
 

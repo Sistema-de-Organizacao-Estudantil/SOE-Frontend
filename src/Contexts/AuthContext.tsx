@@ -1,5 +1,4 @@
 import { useState, useContext, useEffect, createContext, type ReactNode } from "react";
-import { useNavigate } from "react-router";
 import { type UserResponse as User } from "../Contracts/Responses/UserResponse.ts";
 import { UserApi } from "../Api/UserApi.ts";
 
@@ -11,14 +10,13 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<User>({ id: null, name: null, email: null });
-    const navigate = useNavigate();
 
     useEffect(() => {
-        UserApi.me().then(user => {
-            setUser(user!);
-        }).catch(() => {
-            navigate("/auth");
-        });
+        UserApi
+            .me()
+            .then(user => {
+                setUser(user!);
+            });
     }, []);
 
     return (
