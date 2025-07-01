@@ -16,7 +16,7 @@ export class AuthApi {
         });
 
         if (response.ok) {
-            this.setToken(await response.text());
+            AuthApi.setToken(await response.text());
         } else {
             return Promise.reject(await response.json());
         }

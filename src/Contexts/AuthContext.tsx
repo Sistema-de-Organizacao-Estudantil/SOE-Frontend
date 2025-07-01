@@ -3,13 +3,13 @@ import { UserApi } from "../Api/UserApi.ts";
 import { useState, useContext, useEffect, createContext, type ReactNode } from "react";
 
 type AuthContextType = {
-    user: User;
+    user: User | null;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-    const [user, setUser] = useState<User>({ id: null, name: null, email: null });
+    const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
         UserApi

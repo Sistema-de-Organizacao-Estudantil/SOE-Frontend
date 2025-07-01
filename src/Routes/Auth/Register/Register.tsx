@@ -12,14 +12,6 @@ import "./Register.css";
 
 export default function Register() {
     const navigate = useNavigate();
-    const auth = useAuth();
-
-    useEffect(() => {
-        if (auth.user) {
-            navigate("/");
-        }
-    }, []);
-
     const [request, setRequest] = useState<RegisterRequest>({ name: null, email: null, password: null });
     const toast = useRef<Toast>(null);
 

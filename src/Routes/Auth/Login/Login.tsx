@@ -4,22 +4,13 @@ import { Card } from "primereact/card";
 import { InputText } from "primereact/inputtext";
 import { Toast } from "primereact/toast";
 import { type LoginRequest } from "../../../Contracts/Requests/Auth/LoginRequest.ts";
-import { useAuth } from "../../../Contexts/AuthContext.tsx";
 import { useNavigate } from "react-router";
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 
 import "./Login.css";
 
 export default function Login() {
     const navigate = useNavigate();
-    const auth = useAuth();
-
-    useEffect(() => {
-        if (auth.user) {
-            navigate("/");
-        }
-    }, []);
-
     const [request, setRequest] = useState<LoginRequest>({ email: null, password: null });
     const toast = useRef<Toast>(null);
 
