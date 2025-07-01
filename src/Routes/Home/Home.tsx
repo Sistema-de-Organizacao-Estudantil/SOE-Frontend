@@ -1,10 +1,10 @@
 import { userUser } from "../../Contexts/UserContext"
 
 export default function Home() {
-    const auth = userUser();
+    const userContext = userUser();
 
     return (
-        <>{auth.user?.name}</>
+        <>{userContext.user?.name}</>
     )
 }
 

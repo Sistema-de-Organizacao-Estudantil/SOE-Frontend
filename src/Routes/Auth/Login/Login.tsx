@@ -6,11 +6,14 @@ import { Toast } from "primereact/toast";
 import { type LoginRequest } from "../../../Contracts/Requests/Auth/LoginRequest.ts";
 import { useNavigate } from "react-router";
 import { useState, useRef } from "react";
+import { userUser } from "../../../Contexts/UserContext.tsx";
 
 import "./Login.css";
+import { UserApi } from "../../../Api/UserApi.ts";
 
 export default function Login() {
     const navigate = useNavigate();
+    const userContext = userUser();
     const [request, setRequest] = useState<LoginRequest>({ email: null, password: null });
     const toast = useRef<Toast>(null);
 
@@ -27,6 +30,9 @@ export default function Login() {
         AuthApi
             .login(request!)
             .then(() => {
+                UserApi
+                    .me()
+                    .then(userContext.setUser);
                 navigate("/");
             })
             .catch(e => {

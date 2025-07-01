@@ -4,6 +4,7 @@ import { useState, useContext, useEffect, createContext, type ReactNode } from "
 
 type UserContextType = {
     user: User | null;
+    setUser: React.Dispatch<React.SetStateAction<User | null>>;
 };
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -20,7 +21,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
     }, []);
 
     return (
-        <UserContext value={{ user }}>
+        <UserContext value={{ user, setUser }}>
             {children}
         </UserContext>
     );
