@@ -1,6 +1,6 @@
-import { createRoot } from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router";
 import { AuthProvider } from "./Contexts/AuthContext.tsx";
+import { BrowserRouter, Routes, Route } from "react-router";
+import { createRoot } from "react-dom/client";
 import { RequireAuth } from "./Routes/RequireAuth.tsx";
 
 import Home from "./Routes/Home/Home.tsx";

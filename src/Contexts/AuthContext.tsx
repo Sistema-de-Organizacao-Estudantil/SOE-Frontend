@@ -1,6 +1,6 @@
-import { useState, useContext, useEffect, createContext, type ReactNode } from "react";
 import { type UserResponse as User } from "../Contracts/Responses/UserResponse.ts";
 import { UserApi } from "../Api/UserApi.ts";
+import { useState, useContext, useEffect, createContext, type ReactNode } from "react";
 
 type AuthContextType = {
     user: User;

@@ -1,12 +1,12 @@
-import { useState, useRef } from "react";
-import { InputText } from "primereact/inputtext";
-import { Card } from "primereact/card";
-import { Button } from "primereact/button";
-import { Toast } from "primereact/toast";
 import { AuthApi } from "../../../Api/AuthApi.ts";
+import { Button } from "primereact/button";
+import { Card } from "primereact/card";
+import { InputText } from "primereact/inputtext";
+import { Toast } from "primereact/toast";
 import { type LoginRequest } from "../../../Contracts/Requests/Auth/LoginRequest.ts";
-import { useNavigate } from "react-router";
 import { useAuth } from "../../../Contexts/AuthContext.tsx";
+import { useNavigate } from "react-router";
+import { useState, useRef } from "react";
 
 import "./Login.css";
 
